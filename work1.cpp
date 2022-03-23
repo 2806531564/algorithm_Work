@@ -38,7 +38,7 @@ public:
     }
 
     ~ArrayList(){
-        // delete[]array;
+        delete[]array;
     }
 };
 ostream & operator << (ostream &os,const ArrayList & a){
@@ -48,7 +48,7 @@ ostream & operator << (ostream &os,const ArrayList & a){
     return os;
 }
 
-int find_pos(ArrayList a,int stop_num,int start_num){          //寻找每次叫m的同学的索引值  
+int find_pos(const ArrayList& a,int stop_num,int start_num){          //寻找每次叫m的同学的索引值  
     if(a.length==1){
         return 0;
     }
@@ -58,7 +58,7 @@ int find_pos(ArrayList a,int stop_num,int start_num){          //寻找每次叫
     return start_num+stop_num;
 }
 
-ArrayList solution(int p_num,int stop_num){
+ArrayList& solution(int p_num,int stop_num){
     int a[p_num];
     for(int i=0;i<p_num;i++){
         a[i]=i+1;
@@ -72,8 +72,8 @@ ArrayList solution(int p_num,int stop_num){
         tool.pop(pos);
         num++,start_num=pos;   //索引位置元素删除之后，该索引位置的新元素从一开始报数。
     }
-    ArrayList tar(target,p_num);
-    return tar;
+    ArrayList *tar=new ArrayList(target,p_num);
+    return *tar;
 }
 
 
@@ -82,7 +82,7 @@ int main(){
     int p_num,stop_num;
     cin>>p_num>>stop_num;
     //定义一个解决函数，返回值为一个大小为n的数组用于输出最终的出列编号序列
-    ArrayList a=solution(p_num,stop_num-1);
+    ArrayList &a=solution(p_num,stop_num-1);
     cout<<a<<endl;
 
 }
