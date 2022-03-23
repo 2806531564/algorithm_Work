@@ -10,6 +10,14 @@ using namespace std;
 const int Max = 10;
 class LinkedList {
 public:
+    struct Node {
+        int index;          //x的指数
+        int data;           //x的系数
+        Node* next;
+        Node(int a = 0, int b = 0) :index(a), data(b), next(nullptr) {}
+    };
+    Node* head;
+    int length;
 
     LinkedList& operator +(const LinkedList& l) {
         Node* tool1 = this->head->next;
@@ -34,16 +42,6 @@ public:
         LinkedList *Target = new LinkedList(a, i);
         return *Target;
     }
-
-
-    struct Node {
-        int index;          //x的指数
-        int data;           //x的系数
-        Node* next;
-        Node(int a = 0, int b = 0) :index(a), data(b), next(nullptr) {}
-    };
-    Node* head;
-    int length;
     LinkedList() {
         head = new Node;
         length = 0;
